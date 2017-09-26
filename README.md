@@ -266,12 +266,21 @@ dj(45)
 dj(45.45)
 dj("строка будет принята")
 
-proc dj[T: int|float ](x: T)=
+proc dj[T: int|float](x: T)=
   echo x
   
 dj(45)
 dj(45.45)
 dj("будет ошибка") # ошибка не соотвествия типа
+
+proc dj[T: int|float, D: char|string](x: T, y: D)=
+  echo x
+  echo y
+  
+dj(45,'a')
+dj(45.45, "sdf")
+
+dj("sdf", 45) # ошибка не соотвествия типа
 ```
 
 ### Потоки и параллелизм
