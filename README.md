@@ -257,6 +257,25 @@ var anonymous = proc(x: string)=
 anonymous("я анонимная процедура :)")
 ```
 
+Пример передачи процедуры в качестве аргумента.
+```
+proc f(): int =
+  return 5
+  
+proc wrap(function: proc)=
+  echo function()
+  
+wrap(f)
+```
+Пример возврата процедуры в качестве аргумента.
+```
+proc get(): proc =
+  proc res(): int =
+    return 5
+  return res
+  
+echo get()()
+```
 
 ### Итераторы
 Если в процедуре заменить **proc** на **iterator** а **return** на **yield** то получиться итератор.
@@ -286,14 +305,16 @@ proc dj[T](x: T)=
 dj(45)
 dj(45.45)
 dj("строка будет принята")
-
+```
+```
 proc dj[T: int|float](x: T)=
   echo x
   
 dj(45)
 dj(45.45)
 dj("будет ошибка") # ошибка не соотвествия типа
-
+```
+```
 proc dj[T: int|float, D: char|string](x: T, y: D)=
   echo x
   echo y
