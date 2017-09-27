@@ -249,6 +249,13 @@ proc overloadMe(x: int)=
 overloadMe(1) 
 overloadMe(1, 2)
 ```
+Если у процедуры неуказать имя она будет анонимной.
+```
+var anonymous = proc(x: string)=
+  echo x
+
+anonymous("я анонимная процедура :)")
+```
 
 
 ### Итераторы
