@@ -1,8 +1,7 @@
 # Знакомство с синтаксисом языка Nim [ черновик ]
 
-[сайт проекта](https://nim-lang.org/ "Язык программирования Nim.")
-
-[репозиторий проекта](https://github.com/nim-lang/Nim "Git Nim.")
+- [сайт проекта](https://nim-lang.org/ "Язык программирования Nim.")
+- [репозиторий проекта](https://github.com/nim-lang/Nim "Git Nim.")
 >Текущая версия Nim 0.17.2
 
 ### Комментарии
@@ -239,6 +238,18 @@ proc get_string: string =
 
 echo get_string()
 ```
+Возможно делать перегрузку в процедурах.
+```
+proc overloadMe(x: int, y: int)=
+  echo x,y
+
+proc overloadMe(x: int)=
+  echo x
+
+overloadMe(1) 
+overloadMe(1, 2)
+```
+
 
 ### Итераторы
 Если в процедуре заменить **proc** на **iterator** а **return** на **yield** то получиться итератор.
