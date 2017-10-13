@@ -188,7 +188,7 @@ mySeq = @[] # присвоили пустую последовательност
 mySeq = @[1,2,3] # присвоили последовательность из 1,2,3
 ```
 **tuple** - кортеж, это упорядоченные значения вида ключ: значение.
-Доступ к элементам возможен через `.` или `[ ]`
+Доступ к элементам возможен через `.` или `[ ]`.
 ```
 type
   people = tuple[name: string, age: int]
@@ -456,5 +456,12 @@ dj("sdf", 45) # ошибка не соотвествия типа
 * helloworld.nim - файл с исходным кодом который мы хотим скомпилировать
 
 
-### Полезные ссылки
-### Список использумой информации
+### Ссылки
+- (https://nim-lang.org/docs/manual.html)
+- (https://nim-lang.org/docs/tut1.html)
+- (https://nim-lang.org/docs/tut2.html)
+- (https://nim-lang.org/docs/lib.html)
+- (https://nim-by-example.github.io)
+- (http://rosettacode.org/wiki/Category:Nim)
+- (http://devdocs.io/nim/)
+- (https://play.nim-lang.org/)
