@@ -1,4 +1,4 @@
-# Знакомство с синтаксисом языка Nim [ черновик ]
+# Учебное пособие по языку Nim [ альфа версия ]
 
 - [сайт проекта](https://nim-lang.org/ "Язык программирования Nim.")
 - [репозиторий проекта](https://github.com/nim-lang/Nim "Git Nim.")
@@ -413,7 +413,34 @@ for i in printItem():
 ### Шаблоны
 ### Макросы
 ### Модули
-### Прагмы
+Nim позволяет разбивать код на модули. Один файл один модуль. 
+Что бы процедуру или переменну можно было импортировать ее нужно пометить ``*``.
+```
+# file one.nim
+var name* = "Vove" # будет экспортироваться
+var lastname = "Sidorov" # не будет экспортироваться
+
+proc exportme* =  # будет экспортироваться
+  echo "exportme"
+proc notexportme = # не будет экспортироваться
+  echo "notexportme"
+```
+Теперь в другом файле вы можете сделать `import one` и пользоваться импортированными
+переменными и процедурами.
+```
+import one
+exportme() # буде работать
+notexportme() # будет ошибка
+```
+
+import
+import except
+from import
+from import nil
+from as import nil
+include
+
+### Сообщения компилятора (прагмы)
 ### Ооп
 ### Дженерики
 Дженерики это процедуры которые могут принимать указанные типы в качестве параметров.
@@ -457,11 +484,11 @@ dj("sdf", 45) # ошибка не соотвествия типа
 
 
 ### Ссылки
-- (https://nim-lang.org/docs/manual.html)
-- (https://nim-lang.org/docs/tut1.html)
-- (https://nim-lang.org/docs/tut2.html)
-- (https://nim-lang.org/docs/lib.html)
-- (https://nim-by-example.github.io)
-- (http://rosettacode.org/wiki/Category:Nim)
-- (http://devdocs.io/nim/)
-- (https://play.nim-lang.org/)
+- https://nim-lang.org/docs/manual.html
+- https://nim-lang.org/docs/tut1.html
+- https://nim-lang.org/docs/tut2.html
+- https://nim-lang.org/docs/lib.html
+- https://nim-by-example.github.io
+- http://rosettacode.org/wiki/Category:Nim
+- http://devdocs.io/nim/
+- https://play.nim-lang.org/
