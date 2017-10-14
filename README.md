@@ -428,13 +428,20 @@ proc notexportme = # не будет экспортироваться
 Теперь в другом файле вы можете сделать `import one` и пользоваться импортированными
 переменными и процедурами.
 ```
+# file two.nim
 import one
 exportme() # буде работать
 notexportme() # будет ошибка
 ```
+Если мы не хотим что-либо экспортировать мы можем использовать `except`
+```
+# file two.nim
+import one except name
+exportme() # буде работать
+notexportme() # будет ошибка
 
-import
-import except
+```
+
 from import
 from import nil
 from as import nil
