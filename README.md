@@ -522,6 +522,46 @@ var name {. deprecated .} : string # Hint: 'name' is declared but not used [XDec
 ```
 
 ### Ооп
+Для создания обьектного типа необходимо исользовать `object` в блоке `type`.
+Обьекты такого типа попадают в стек.
+```
+type
+  Person = object
+    name: string
+    age: int
+
+```
+Так можно создать новый обьект.
+```
+type
+  Person = object
+    name: string
+    age: int
+
+var me = Person() # создание обьекта
+echo me
+```
+Так можно использовать конструктор.
+```
+type
+  Person = object
+    name: string
+    age: int
+var me = Person(name:"Ira", age:30) # конструктор - позволяет сразу задать значения атрибутов
+echo me
+```
+Если использовать `ref` такие обьекты попадут в кучу.
+```
+type
+  Person = ref object # такие обьекты попадут в кучу 
+    name: string
+    age: int
+ 
+var me = Person(name:"Ira", age:30)
+echo me.name
+```
+
+
 ### Дженерики
 Дженерики это процедуры которые могут принимать указанные типы в качестве параметров.
 Между `[]` мы указываем нужные типы. `[T]` - любой тип. `[T: int|float ]` - только **int** или **float**.
