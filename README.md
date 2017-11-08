@@ -522,7 +522,7 @@ var name {. deprecated .} : string # Hint: 'name' is declared but not used [XDec
 ```
 
 ### Ооп
-Для создания обьектного типа необходимо исользовать `object` в блоке `type`.
+Для создания обьектного типа необходимо исользовать **object** в блоке **type**.
 Обьекты такого типа попадают в стек.
 ```
 type
@@ -534,7 +534,7 @@ type
 Так можно создать новый обьект.
 ```
 type
-  Person = object
+  Person = object # такие обьекты попадуть в стек
     name: string
     age: int
 
@@ -550,7 +550,20 @@ type
 var me = Person(name:"Ira", age:30) # конструктор - позволяет сразу задать значения атрибутов
 echo me
 ```
-Если использовать `ref` такие обьекты попадут в кучу.
+Мы можем задать значения после создания обьекта.
+```
+type
+  Person = ref object 
+    name: string
+    age: int
+ 
+var me = Person()
+me.name = "Ira"
+me.age = 20
+echo me.name
+echo me.age
+```
+Если использовать **ref** такие обьекты попадут в кучу.
 ```
 type
   Person = ref object # такие обьекты попадут в кучу 
@@ -559,6 +572,19 @@ type
  
 var me = Person(name:"Ira", age:30)
 echo me.name
+```
+Наследование можно сделать с помощью ключевого слова **of**.
+Нельзя наследоваться от финального обьекта. По этому используется **RootObj**.
+```
+type
+  Person = ref object of RootObj # наследуемся от RootObj что бы небыло финального обьекта 
+    name: string
+    age: int
+  Man = ref object of Person # наследуемся от Person
+    sex: string
+ 
+var me = Man(name:"Ira", age:30, sex: "female")
+echo me.sex
 ```
 
 
