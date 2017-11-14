@@ -586,6 +586,78 @@ type
 var me = Man(name:"Ira", age:30, sex: "female")
 echo me.sex
 ```
+Для использования метода нужно создать процедуру и задать ей в качестве типа наш обьект.
+```
+type
+  Person = object
+
+proc getObj(this: Person): string = # создаем процедуру которая принимает наш объект
+  return "Person"
+
+var me = Person() # создаем объект
+echo me.getObj() # вызываем метод
+```
+Если нужны мультиметоды вместо **proc** надо использовать **method** и прагму **{.base.}** для базового метода.
+```
+type
+  Person = object
+
+method getObj(this: Person): string {.base.} = # создаем метод с прагмой который принимает наш объект
+  return "Person"
+
+var me = Person() # создаем объект
+echo me.getObj() # вызываем метод
+```
+**proc** - говорит что мы хотим использовать статическое связывание, оно происходит во время компиляции.
+**method** - говорит что мы хотим использовать динамическое связывание, оно происходит во время выполения программы.
+Именно этот способ позволяет создавать мультиметоды для реализации наследования.
+```
+type
+  Person = object of RootObj # создали объектный тип Person от которого будем наследоваться
+  Men = object of Person # наследуемся от Person
+  Women = object of Person # наследуемся от Person
+
+
+proc getObj(this: Person): string =
+  return "Person"
+proc print(this: Person) = # здесь происходить привязка во время компиляции,
+  echo this.getObj() # мы берем известный нам тип Person
+  # мы четко знаем что метод отработает с Person
+
+proc getObj(this: Men): string =
+  return "Men"
+
+
+method getObj2(this: Person): string {.base.} =
+  return "Person2"
+method print2(this: Person) {.base.} = # а здесь во время компиляции ничего не происходит,
+  echo this.getObj2() # только во время выполения происходит подстановка объектного типа
+  # по этому мы не знаем с каким объектом будет работать метод
+  # у какого объекта вызовем с тем и будет работать
+
+method getObj2(this: Men): string =
+  return "Men2"
+
+method getObj2(this: Women): string =
+  return "Women"
+
+
+var me = Men()
+
+# мы вызваем print, и нам четко ясно что отработаем с Person
+# и уже не важно что объект типа Men
+# связывание уже прошло
+me.print() # выведет Person
+
+# а тут не понятно какого типа объект
+# что дадут с тем и будем работать
+# мы даем Men, по этому c ним и будем работать
+me.print2() # выведет Men2
+
+var w = Women()
+# а тут передаем Women - значит с ним работаем
+w.print2() # выведет Women
+```
 
 
 ### Дженерики
