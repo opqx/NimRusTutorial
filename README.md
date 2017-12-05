@@ -418,14 +418,30 @@ echo get()()
 Этот тип данных может использоваться только в качестве параметра процедуры.
 Oбязательно надо указать какой тип данных будет переданны в открытом массиве
 ```
-proc opArray(a: openArray[int])= # открытый массив бедет содершать int
+proc opArray(a: openArray[int])= # открытый массив будет содержать int
   for i in a:
     echo i
 
 opArray(@[1,2,3,4,5])
 opArray([1,2,3,4,5])
 ```
+Если надо передать произвольное число параметров используйте varargs. Он работает аналогично openArray.
+```
+proc opArray(a: varargs[string])= # varargs будет содержать string
+  for i in a:
+    echo i
 
+opArray("as", "sd", "df")
+```
+Так же varargs позволяет сделать преобразование типов.
+```
+proc opArray(a: varargs[string, `$`])= # varargs будет содержать string,
+                                      # но если попадется другой тип он будет преобразовать в строку
+  for i in a:
+    echo i
+
+opArray("as", "sd", 21)
+```
 
 
 ### Итераторы
