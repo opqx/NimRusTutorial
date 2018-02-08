@@ -778,3 +778,4 @@ dj("sdf", 45) # ошибка не соотвествия типа
 - http://devdocs.io/nim/
 - https://play.nim-lang.org/
 - https://github.com/dom96/choosenim
+- https://nim-by-example.github.io/
