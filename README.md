@@ -724,9 +724,9 @@ type
     name: string
     age: int
   Student = ref object of Person # Наследуемся от Person
-    averageGrade: float
+    sex: string
     
-var me = Student(name: "Иван", age: 15, averageGrade: 4.35)
+var me = Student(name: "Иван", age: 15, sex: "мужской")
 echo me.sex
 ```
 
